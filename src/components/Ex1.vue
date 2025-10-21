@@ -6,7 +6,7 @@
             return{
                 x: 0,
                 y: 0,
-                operators: ["+","-","x","/","%"],
+                operators: ["+","-","*","/","%"],
                 selectedOp: "",
             }
         },
@@ -14,7 +14,7 @@
             result(){
                 if(this.selectedOp==="+")return this.x +this.y
                 if(this.selectedOp==="-")return this.x -this.y
-                if(this.selectedOp==="x")return this.x *this.y
+                if(this.selectedOp==="*")return this.x *this.y
                 if(this.selectedOp==="/")return this.x /this.y
                 if(this.selectedOp==="%")return this.x %this.y
             }
@@ -35,7 +35,9 @@
 </template>
 
 <style scoped>
-    p, input { font-family: monospace; }
+    p, input { 
+        color: blue;
+        font-family: monospace; }
     p { white-space: pre; }
 
 </style>
