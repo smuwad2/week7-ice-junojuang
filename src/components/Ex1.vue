@@ -1,35 +1,29 @@
-<script>
-export default {
-  data() {
-    return {
-      x: 0,
-      y: 0,
-      selectedOp: '+',
-      operators: ['+', '-', '*', '/', '%']
-    };
-  },
-  computed: {
-    // compute the result of x (op) y without using eval
-    result() {
-      const a = Number(this.x);
-      const b = Number(this.y);
-      switch (this.selectedOp) {
-        case '+':
-          return a + b;
-        case '-':
-          return a - b;
-        case '*':
-          return a * b;
-        case '/':
-          return b === 0 ? '∞' : a / b;
-        case '%':
-          return b === 0 ? 'NaN' : a % b;
-        default:
-          return 'NaN';
-      }
-    }
+<script setup>
+import { ref, computed } from 'vue';
+
+const x = ref(0);
+const y = ref(0);
+const selectedOp = ref('+');
+const operators = ['+', '-', '*', '/', '%'];
+
+const result = computed(() => {
+  const a = Number(x.value);
+  const b = Number(y.value);
+  switch (selectedOp.value) {
+    case '+':
+      return a + b;
+    case '-':
+      return a - b;
+    case '*':
+      return a * b;
+    case '/':
+      return a / b; // JS returns Infinity or NaN as appropriate
+    case '%':
+      return a % b; // JS returns NaN for modulus by zero
+    default:
+      return NaN;
   }
-};
+});
 </script>
 
 <template>
